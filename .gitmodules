@@ -1,3 +1,6 @@
 [submodule "httplib"]
 	path = httplib
 	url = git@github.com:yhirose/cpp-httplib.git
+[submodule "cJSON"]
+	path = cJSON
+	url = git@github.com:DaveGamble/cJSON.git
