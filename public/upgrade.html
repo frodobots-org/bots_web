@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <div class="content">
+        <h1>Local OTA Upgrade</h1>
+        <div class="pure-form">
+            <input type="file" id="ota-file" accept=".zip,.gz,.img,.tar,.bin" hidden/>
+            <button class="pure-button pure-button-primary" id="select-file">select a firmware package</button>
+            <br>
+            <br>
+            <button class="pure-button" id="start-upgrade" disabled>start</button>
+        </div>
+        <div id="status" style="margin-top:20px"></div>
+    </div>
+</body>
+
+</html>
+<script src="js/upgrade.js"></script>

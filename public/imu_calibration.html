@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMU Calibration</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <div class="content">
+        <h1>IMU Campass Calibration</h1>
+        <div class="pure-g">
+            <div class="pure-u-1-2">
+                <div class="info-card">
+                    <h3>Current Heading</h3>
+                    <ul class="info-list">
+                        <li>Compass Direction: <span id="heading-value">0°</span></li>
+                    </ul>
+                </div>
+            </div>
+        <div class="pure-controls" style="margin-top:30px;text-align:center">
+            <button class="pure-button pure-button-primary" id="calibration-toggle">Campass Calibration Start</button>
+        </div>
+        <div id="calibration-status" style="margin-top:20px;color:#666"></div>
+    </div>
+    <script src="js/imu_calibration.js"></script>
+</body>
+
+</html>

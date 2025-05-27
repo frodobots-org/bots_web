@@ -1,0 +1,61 @@
+body {
+    margin-left: 200px; /* 与导航栏宽度匹配 */
+    padding: 20px;
+}
+
+#navbar-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    background: #2c3e50;
+    z-index: 1000;
+}
+
+.navbar a {
+    display: block;
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.navbar a:hover {
+    background: #34495e;
+}
+
+.navbar a.active {
+    background-color: #555;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.info-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    margin: 12px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.info-list span {
+    float: right;
+    color: #666;
+}

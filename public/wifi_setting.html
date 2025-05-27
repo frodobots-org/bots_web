@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>WIFI Settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+    <div class="content">
+      <div class="pure-g">
+        <div class="pure-u-2-24 pure-u-md-1-3"></div>
+        <div class="pure-u-20-24 pure-u-md-1-3">
+          <form class="pure-form pure-form-aligned" id="wifi-settings">
+            <fieldset>
+              <legend style="font-size:24px">WiFi</legend>
+              <div class="pure-control-group">
+                <label for="ssid">SSID</label>
+                <input type="text" id="ssid" placeholder="SSID" />
+              </div>
+              <div class="pure-control-group">
+                <label for="psk">Password</label>
+                <input type="password" id="psk" placeholder="Password" />
+              </div>
+              <div class="pure-control-group">
+                <label for="security">Security</label>
+                <select id="security">
+                  <option>WPA-PSK</option>
+                  <option>Open</option>
+                </select>
+              </div>
+              <div class="pure-controls">
+                <button class="pure-button pure-button-primary" id="wifi-submit">Submit</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-3"></div>
+      </div>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <img src="css/check.svg" id="alert" style="width: 60px; display: none"/>
+        <div class="loader"></div>
+      </div>
+    </div>
+
+  </body>
+  <script src="js/wifi.js"></script>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Settings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/pure-min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <div class="content">
+        <!-- Front Camera Settings -->
+        <div class="pure-g">
+            <div class="pure-u-1-3">
+                <div class="info-card">
+                    <h3>Front Camera</h3>
+                    <form id="front-cam-form">
+                        <div class="pure-control-group">
+                            <label>Resolution</label>
+                            <select id="front-resolution">
+                                <option value="1920x720">1920x1080</option>
+                                <option value="1280x720">1280x720</option>
+                                <option value="1024x576">1024x576</option>
+                            </select>
+                        </div>
+                        <div class="pure-controls">
+                            <label class="pure-checkbox">
+                                <input type="checkbox" id="front-flip"> Flip
+                            </label>
+                            <label class="pure-checkbox">
+                                <input type="checkbox" id="front-mirror"> Mirror
+                            </label>
+                            
+                            <select id="front-rotation">
+                                <option value="0">0°</option>
+                                <option value="90">90°</option>
+                                <option value="180">180°</option>
+                                <option value="270">270°</option>
+                            </select>
+                            <label>Rotation</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pure-u-1-3">
+                <div class="info-card">
+                    <h3>Rear Camera</h3>
+                    <form id="rear-cam-form">
+                        <div class="pure-control-group">
+                            <label>Resolution</label>
+                            <select id="rear-resolution">
+                                <option value="854x480">854x480</option>
+                                <option value="640x360">640x360</option>
+                                <option value="480x270">480x270</option>
+                            </select>
+                        </div>
+                        <div class="pure-controls">
+                            <label class="pure-checkbox">
+                                <input type="checkbox" id="rear-flip"> Flip
+                            </label>
+                            <label class="pure-checkbox">
+                                <input type="checkbox" id="rear-mirror"> Mirror
+                            </label>
+                            <select id="rear-rotation">
+                                <option value="0">0°</option>
+                                <option value="90">90°</option>
+                                <option value="180">180°</option>
+                                <option value="270">270°</option>
+                            </select>
+                            <label>Rotation</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pure-u-1-3">
+                <div class="info-card">
+                    <h3>USB Camera</h3>
+                    <form id="usb-cam-form">
+                        <div class="pure-control-group">
+                            <label>Resolution</label>
+                            <select id="usb-resolution">
+                                <option value="1280x720">1280x720</option>
+                                <option value="640x480">640x480</option>
+                            </select>
+                        </div>
+                        <div class="pure-controls">
+                            <label class="pure-checkbox">
+                                <input type="checkbox" id="usb-flip"> Flip
+                            </label>
+                            <label class="pure-checkbox">
+                                <input type="checkbox" id="usb-mirror"> Mirror
+                            </label>
+                            <select id="usb-rotation">
+                                <option value="0">0°</option>
+                                <option value="90">90°</option>
+                                <option value="180">180°</option>
+                                <option value="270">270°</option>
+                            </select>
+                            <label>Rotation</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audio Settings -->
+        <div class="pure-g">
+            <div class="pure-u-1-2">
+                <div class="info-card">
+                    <h3>Microphone</h3>
+                    <input type="range" id="mic-volume" min="0" max="100">
+                    <span id="mic-value">50%</span>
+                </div>
+            </div>
+            <div class="pure-u-1-2">
+                <div class="info-card">
+                    <h3>Speaker</h3>
+                    <input type="range" id="speaker-volume" min="0" max="100">
+                    <span id="speaker-value">50%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/media_setting.js"></script>
+</body>
+</html>
