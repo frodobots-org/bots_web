@@ -136,7 +136,7 @@ int main() {
 
 
 
-	svr.set_base_dir("../public");
+	svr.set_base_dir("../public2");
 
 	// 添加心跳指示灯
 	svr.Get("/status", [](const httplib::Request&, httplib::Response& res) {

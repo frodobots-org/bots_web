@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+    <title>IMU Calibration</title>
+    <link rel="stylesheet" href="css/bootstrap536/bootstrap.min.css">
+    <script src="js/jquery/jquery.min.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-2" href="#">IMU Calibration</a>
+        </div>
+    </nav>
+
+    <div id="navbar-container"></div>
+
+    <main class="container mt-5 pt-4">
+        <div class="card shadow-sm border">
+
+            <div class="card-body">
+                <form id="imu-calibration-form" class="needs-validation" novalidate>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">Start Calibration</button>
+                    </div>
+                </form>
+                <div class="card mt-4">
+                    <div class="card-header bg-light">Current Heading</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">Compass Direction: <span id="heading-value">0°</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast align-items-center text-white bg-info border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap536/bootstrap.bundle.min.js"></script>
+    <script src="js/imu_calibration.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+    <title>Diagnosis Report</title>
+    <link rel="stylesheet" href="css/bootstrap536/bootstrap.min.css">
+    <script src="js/jquery/jquery.min.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-2" href="#">Diagnosis</a>
+        </div>
+    </nav>
+
+    <div id="navbar-container"></div>
+
+    <main class="container mt-5 pt-4">
+        <div class="card shadow-sm border">
+            <div class="card-body text-center">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button type="button" class="btn btn-primary btn-sm rounded-pill shadow-sm" id="export-diagnosis">
+                        <i class="bi bi-download me-2"></i>
+                        export
+                    </button>
+                </div>
+                <div class="mt-2 text-muted small">Export the log files</div>
+                <div id="export-status" class="mt-3 text-muted"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast align-items-center text-white bg-info border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap536/bootstrap.bundle.min.js"></script>
+    <script src="js/diagnosis.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+    <title>Driving Control</title>
+    <link rel="stylesheet" href="css/bootstrap536/bootstrap.min.css">
+    <script src="js/jquery/jquery.min.js"></script>
+    <style>
+        .joystick-container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+        .joystick-handle {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s;
+        }
+      
+        .joystick-container {
+            touch-action: none;
+        }
+        .joystick-handle {
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-2" href="#">Driving</a>
+        </div>
+    </nav>
+    <div id="navbar-container"></div>
+    
+    <div class="container mt-5 pt-4">
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <div class="row g-0">
+                    <div class="col-12 col-lg-6 p-4 border-end">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <div class="joystick-container mx-auto bg-white border rounded-circle">
+                                    <div class="joystick-handle bg-primary rounded-circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 p-4">
+                        <div class="card border-0 h-100">
+                            <div class="card-body d-flex align-items-center justify-content-center">
+                                <div class="form-check form-switch form-switch-lg">
+                                    <input type="checkbox" class="form-check-input" id="lamp-switch">
+                                    <label class="form-check-label" for="lamp-switch">Lamp</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap536/bootstrap.bundle.min.js"></script>
+    <script src="js/driving.js"></script>
+    <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+document.querySelector('.joystick-container').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+});
+</script>

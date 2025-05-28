@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+    <title>WiFi Settings</title>
+    <link rel="stylesheet" href="css/bootstrap536/bootstrap.min.css">
+    <script src="js/jquery/jquery.min.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-2" href="#">WIFI Settings</a>
+        </div>
+    </nav>
+
+    <div id="navbar-container"></div>
+
+    <main class="container mt-5 pt-4">
+        <div class="card shadow-sm border">
+            <div class="card-body">
+                <form id="wifi-form" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label">SSID</label>
+                        <input type="text" class="form-control" id="wifi-ssid" placeholder="Enter WiFi name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="wifi-password" placeholder="Enter password">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Security Type</label>
+                        <select class="form-select" id="wifi-security">
+                            <option>None</option>
+                            <option>WPA</option>
+                            <option>WPA2</option>
+                            <option>WPA3</option>
+                        </select>
+                    </div>
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary" id="connect-wifi">Connect</button>
+                    </div>
+                </form>
+                <div class="mt-4" id="wifi-status" style="color: #666;"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast align-items-center text-white bg-info border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap536/bootstrap.bundle.min.js"></script>
+    <script src="js/wifi.js"></script>
+</body>
+</html>

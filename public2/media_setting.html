@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+    <title>Media Settings</title>
+    <link rel="stylesheet" href="css/bootstrap536/bootstrap.min.css">
+    <script src="js/jquery/jquery.min.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-2" href="#">Media Configuration</a>
+        </div>
+    </nav>
+
+    <div id="navbar-container"></div>
+
+    <main class="container mt-5 pt-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Front Camera Card -->
+            <div class="col">
+                <div class="card shadow-sm border">
+                    <div class="card-header bg-light text-dark border-bottom">
+                        <h5 class="mb-0">Front Camera</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="camera-form">
+                            <div class="mb-3">
+                                <label class="form-label">Resolution</label>
+                                <select class="form-select form-select-sm">
+                                    <option>1920x1080 (Full HD)</option>
+                                    <option>1280x720 (HD)</option>
+                                    <option>1024x576 (SD)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="front-flip">
+                                <label class="form-check-label">Flip Mode</label>
+                            </div>
+                            <div class="mb-3 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="front-mirror">
+                                <label class="form-check-label">Mirror Mode</label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Rotation</label>
+                                <select class="form-select form-select-sm">
+                                    <option>0°</option>
+                                    <option>90°</option>
+                                    <option>180°</option>
+                                    <option>270°</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-sm w-100">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rear Camera Card -->
+            <div class="col">
+                <div class="card shadow-sm border">
+                    <div class="card-header bg-light text-dark border-bottom">
+                        <h5 class="mb-0">Rear Camera</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="camera-form">
+                            <div class="mb-3">
+                                <label class="form-label">Resolution</label>
+                                <select class="form-select form-select-sm">
+                                    <option>854x480 (WVGA)</option>
+                                    <option>640x360 (nHD)</option>
+                                    <option>480x270 (qHD)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="rear-flip">
+                                <label class="form-check-label">Flip Mode</label>
+                            </div>
+                            <div class="mb-3 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="rear-mirror">
+                                <label class="form-check-label">Mirror Mode</label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Rotation</label>
+                                <select class="form-select form-select-sm">
+                                    <option>0°</option>
+                                    <option>90°</option>
+                                    <option>90°</option>
+                                    <option>180°</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-sm w-100">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- USB Camera Card -->
+            <div class="col">
+                <div class="card shadow-sm border">
+                    <div class="card-header bg-light text-dark border-bottom">
+                        <h5 class="mb-0">USB Camera</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="camera-form">
+                            <div class="mb-3">
+                                <label class="form-label">Resolution</label>
+                                <select class="form-select form-select-sm">
+                                    <option>1280x720 (HD)</option>
+                                    <option>640x480 (VGA)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="usb-flip">
+                                <label class="form-check-label">Flip Mode</label>
+                            </div>
+                            <div class="mb-3 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="usb-mirror">
+                                <label class="form-check-label">Mirror Mode</label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Rotation</label>
+                                <select class="form-select form-select-sm">
+                                    <option>0°</option>
+                                    <option>90°</option>
+                                    <option>90°</option>
+                                    <option>180°</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-sm w-100">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card shadow-sm border mt-3">
+                    <div class="card-header bg-light text-dark border-bottom">
+                        <h5 class="mb-0">Microphone</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="slider-container">
+                            <div class="slider-label d-flex justify-content-between mb-2">
+                                <label class="form-label">Volume</label>
+                                <span class="slider-value" id="mic-value">50%</span>
+                            </div>
+                            <input type="range" class="form-range" min="0" max="100" value="50" id="mic-slider">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm border mt-3">
+                    <div class="card-header bg-light text-dark border-bottom">
+                        <h5 class="mb-0">Speaker</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="slider-container">
+                            <div class="slider-label d-flex justify-content-between mb-2">
+                                <label class="form-label">Volume</label>
+                                <span class="slider-value" id="speaker-value">50%</span>
+                            </div>
+                            <input type="range" class="form-range" min="0" max="100" value="50" id="speaker-slider">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Bootstrap Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap536/bootstrap.bundle.min.js"></script>
+    <script src="js/media_setting.js"></script>
+</body>
+</html>

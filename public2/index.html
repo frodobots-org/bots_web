@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Control Panel</title>
+    <link rel="stylesheet" href="css/bootstrap536/bootstrap.min.css">
+    <script src="js/jquery/jquery.min.js"></script>
+</head>
+<body class="bg-light">
+    <div id="navbar-container"></div>
+    
+    <script src="js/bootstrap536/bootstrap.bundle.min.js"></script>
+    <script>
+        $(function() {
+            $("#navbar-container").load("navbar.html", function() {
+                window.location.href = 'driving.html';
+            });
+        });
+    </script>
+</body>
+</html>

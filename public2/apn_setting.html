@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+    <title>APN Settings</title>
+    <link rel="stylesheet" href="css/bootstrap536/bootstrap.min.css">
+    <script src="js/jquery/jquery.min.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-2" href="#">4G Configuration</a>
+        </div>
+    </nav>
+
+    <div id="navbar-container"></div>
+
+    <main class="container mt-5 pt-4">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm border">
+                    <div class="card-header bg-light text-dark border-bottom">
+                        <h5 class="mb-0">PDP Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <input type="file" id="pdp-file" style="display: none;">
+                        <div class="btn-group w-100">
+                            <button type="button" class="btn btn-outline-secondary" id="pdp-import">
+                                <i class="bi bi-upload me-2"></i>Import
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" id="pdp-export">
+                                <i class="bi bi-download me-2"></i>Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm border">
+                    <div class="card-header bg-light text-dark border-bottom">
+                        <h5 class="mb-0">APN Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="apn-form" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label class="form-label">APN</label>
+                                <input type="text" class="form-control" id="apn" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Authentication</label>
+                                <select class="form-select" id="auth">
+                                    <option>None</option>
+                                    <option>PAP</option>
+                                    <option>CHAP</option>
+                                </select>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">PIN Code</label>
+                                <input type="text" class="form-control" id="pin" placeholder="PIN code">
+                            </div>
+
+                            <hr class="my-4">
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Save Settings</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast align-items-center text-white bg-info border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap536/bootstrap.bundle.min.js"></script>
+    <script src="js/apn_setting.js"></script>
+</body>
+</html>
