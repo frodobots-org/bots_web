@@ -3,33 +3,97 @@ $(document).ready(() => {
         new bootstrap.Offcanvas(document.getElementById('sidebar'));
     });
 
+    initMediaSettings();
+
+
+    // 修改：将e.target.value转换为整数后再传递给updateVolume
     $('#mic-slider').on('input', function(e) {
         $('#mic-value').text(`${e.target.value}%`);
-        updateVolume('mic', e.target.value);
+    }).on('change', function(e) {
+        updateVolume('mic', parseInt(e.target.value));
     });
 
     $('#speaker-slider').on('input', function(e) {
-        $('#speaker-value').text(`${e.target.value}%`);
-        updateVolume('speaker', e.target.value);
+        $('#speaker-value').text(`${e.target.value}%`); 
+    }).on('change', function(e) {
+        updateVolume('speaker', parseInt(e.target.value));
     });
 
     $('.camera-form').submit(function(e) {
         e.preventDefault();
-        const formData = {
-            resolution: $(this).find('select').eq(0).val(),
-            flip: $(this).find('.form-check-input:eq(0)').prop('checked'),
-            mirror: $(this).find('.form-check-input:eq(1)').prop('checked'),
-            rotation: $(this).find('select').eq(1).val().replace('°', '')
+        const $form = $(this);
+        const cameraType = $form.closest('.card').find('h5').text().toLowerCase().trim();
+        
+        const resolutionMap = {
+            'front-camera': { 
+                '1920x1080 (Full HD)': 1, 
+                '1280x720 (HD)': 2, 
+                '1024x576 (SD)': 3 
+            },
+            'rear-camera': { 
+                '854x480 (WVGA)': 1, 
+                '640x360 (nHD)': 2, 
+                '480x270 (qHD)': 3 
+            },
+            'usb-camera': { 
+                '1280x720 (HD)': 1, 
+                '640x480 (VGA)': 2 
+            }
         };
 
-        saveCameraSettings($(this).closest('.card').find('h5').text().toLowerCase(), formData);
+        const formData = {
+            resolution: resolutionMap[cameraType][$form.find('select').eq(0).val()],
+            flip: $form.find('.form-check-input:eq(0)').prop('checked'),
+            mirror: $form.find('.form-check-input:eq(1)').prop('checked'),
+            rotation: parseInt($form.find('select').eq(1).val().replace('°', ''))
+        };
+
+        console.log(formData);
+        saveCameraSettings(cameraType, formData);
     });
+
+    function initMediaSettings() {
+        const reverseResolutionMap = {
+            'front-camera': { 1: '1920x1080 (Full HD)', 2: '1280x720 (HD)', 3: '1024x576 (SD)' },
+            'rear-camera': { 1: '854x480 (WVGA)', 2: '640x360 (nHD)', 3: '480x270 (qHD)' },
+            'usb-camera': { 1: '1280x720 (HD)', 2: '640x480 (VGA)' }
+        };
+
+        $('.camera-form').each(function() {
+            const $form = $(this);
+            const cameraType = $form.closest('.card').find('h5').text().toLowerCase();
+            
+            $.get(`/api/v1/camera/${cameraType}`)
+                .done(settings => {
+                    $form.find('select').eq(0).val(reverseResolutionMap[cameraType][settings.resolution]);
+                    $form.find('.form-check-input:eq(0)').prop('checked', settings.flip);
+                    $form.find('.form-check-input:eq(1)').prop('checked', settings.mirror);
+                    $form.find('select').eq(1).val(`${settings.rotation}°`);
+                })
+                .fail(() => showToast(`Failed to load initial settings for ${cameraType}`));
+        });
+
+        $.get('/api/v1/mic/volume')
+            .done(data => {
+                $('#mic-slider').val(data.value);
+                $('#mic-value').text(`${data.value}%`);
+            })
+            .fail(() => showToast('Failed to load initial mic volume'));
+
+        $.get('/api/v1/speaker/volume')
+            .done(data => {
+                $('#speaker-slider').val(data.value);
+                $('#speaker-value').text(`${data.value}%`);
+            })
+            .fail(() => showToast('Failed to load initial speaker volume'));
+    }
 
     function updateVolume(type, value) {
         $.ajax({
             url: `/api/v1/${type}/volume`,
             method: 'POST',
-            data: { value: value },
+            contentType: 'application/json',
+            data: JSON.stringify({ value: value }),
             success: () => showToast(`${type} volume updated`),
             error: () => showToast('Update failed')
         });

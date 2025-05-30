@@ -2,7 +2,12 @@ $(document).ready(() => {
     $("#navbar-container").load("navbar.html", function() {
         new bootstrap.Offcanvas(document.getElementById('sidebar'))
     });
-    $('#imu-calibration-form').on('submit', function(e) {
+
+    const $calibrateForm = $('#imu-calibration-form');
+    const $submitBtn = $calibrateForm.find('button[type="submit"]');
+    const $stopBtn = $('<button type="button" class="btn btn-danger ms-2 d-none">Stop Calibration</button>').insertAfter($submitBtn);
+
+    $calibrateForm.on('submit', function(e) {
         e.preventDefault();
         if (!this.checkValidity()) {
             e.stopPropagation();
@@ -10,14 +15,34 @@ $(document).ready(() => {
             return;
         }
 
-        const formData = {};
+        const formData = { command: 1 };
         $.ajax({
             url: '/api/v1/imu/calibrate',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
-            success: () => showToast('Calibration started successfully', 'success'),
+            success: () => {
+                showToast('Calibration started successfully', 'success');
+                $submitBtn.addClass('d-none');
+                $stopBtn.removeClass('d-none');
+            },
             error: () => showToast('Calibration failed', 'danger')
+        });
+    });
+
+    $stopBtn.on('click', function() {
+        const formData = { command: 0 };
+        $.ajax({
+            url: '/api/v1/imu/calibrate',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: () => {
+                showToast('Calibration stopped successfully', 'success');
+                $stopBtn.addClass('d-none');
+                $submitBtn.removeClass('d-none');
+            },
+            error: () => showToast('Stop calibration failed', 'danger')
         });
     });
 

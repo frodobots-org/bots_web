@@ -12,14 +12,23 @@ $(document).ready(() => {
             return;
         }
 
+        const enable = $('#proxy-enable').is(':checked');
+        const ipValue = $('#proxy-ip').val().trim();
+        const portValue = $('#proxy-port').val().trim();
+        const usernameValue = $('#proxy-user').val().trim();
+        const passwordValue = $('#proxy-pass').val().trim();
 
-        const formData = {
-            enable: $('#proxy-enable').is(':checked'),
-            ip: $('#proxy-ip').val().trim(),
-            port: $('#proxy-port').val().trim(),
-            username: $('#proxy-user').val().trim(),
-            password: $('#proxy-pass').val().trim()
-        };
+        const port = enable && portValue !== '' ? parseInt(portValue, 10) : null;
+        if (enable && portValue !== '' && isNaN(port)) {
+            showToast('Proxy port must be a valid integer', 'warning');
+            return;
+        }
+
+        const formData = { enable };
+        if (ipValue) formData.ip = ipValue;
+        if (port !== null && !isNaN(port)) formData.port = port;
+        if (usernameValue) formData.username = usernameValue;
+        if (passwordValue) formData.password = passwordValue;
 
         $.ajax({
             url: '/api/v1/proxy/settings',
@@ -39,11 +48,10 @@ $(document).ready(() => {
     }
 
     $.get("/api/v1/proxy/settings", function(data) {
-        $('#proxy-enable').prop('checked', data.enabled || false);
-
-        $('#proxy-ip').val('');
-        $('#proxy-port').val('');
-        $('#proxy-user').val('');
-        $('#proxy-pass').val('');
+        $('#proxy-enable').prop('checked', data.enable || false);
+        $('#proxy-ip').val(data.ip || '');
+        $('#proxy-port').val(data.port && !isNaN(data.port) ? data.port.toString() : '');
+        $('#proxy-user').val(data.username || '');
+        $('#proxy-pass').val(data.password || '');
     }).fail(() => showToast('unable to get proxy settings', 'danger'));
 });

@@ -7,8 +7,8 @@ $(document).ready(() => {
             url: '/api/v1/wifi/status',
             method: 'GET',
             success: (data) => {
-                $('#wifi-ssid').val(data.currentSSID);
-                $('#wifi-status').text(`Current connection: ${data.currentSSID || 'None'}`);
+                $('#wifi-ssid').val(data.ssid);
+                $('#wifi-status').text(`Current connection: ${data.ssid || 'None'}`);
             },
             error: () => {
                 showToast('Failed to fetch WiFi status', 'danger');
@@ -26,7 +26,7 @@ $(document).ready(() => {
 
         const formData = {
             ssid: $('#wifi-ssid').val(),
-            password: $('#wifi-password').val(),
+            psk: $('#wifi-password').val(),
             security: $('#wifi-security').val()
         };
 
@@ -38,7 +38,7 @@ $(document).ready(() => {
             success: () => {
                 showToast('Connecting to WiFi...', 'info');
                 $('#wifi-status').text('Connecting...');
-                setTimeout(fetchWifiStatus, 3000);
+                setTimeout(fetchWifiStatus, 10000);
             },
             error: () => {
                 showToast('Connection failed', 'danger');

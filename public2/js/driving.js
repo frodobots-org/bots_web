@@ -41,20 +41,42 @@ class JoystickController {
         
         this.handle.style.transform = `translate(${x}px, ${y}px)`;
         
-        // Send control data to backend
         const data = {
-            x: (x / this.radius).toFixed(2),
-            y: (y / this.radius).toFixed(2)
+            x: parseFloat((x / this.radius).toFixed(2)),
+            y: parseFloat((y / this.radius).toFixed(2))
         };
-        $.post('/api/v1/control', data);
+        console.log(data);
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/control',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: () => showToast('Control command sent'),
+            error: () => showToast('Failed to send control command')
+        });
     }
 
     end() {
         this.isDragging = false;
-        this.handle.style.transform = 'translate(-50%, -50%)'; // Fixed extra parenthesis
-        $.post('/api/v1/control', { x: 0, y: 0 }); // Reset position
+        this.handle.style.transform = 'translate(-50%, -50%)';
+        // Reset position using AJAX with JSON format
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/control',
+            contentType: 'application/json',
+            data: JSON.stringify({ x: 0, y: 0 }),
+            success: () => showToast('Control reset successful'),
+            error: () => showToast('Control reset failed')
+        });
     }
 }
+
+    // Toast notification
+    function showToast(message) {
+        const toast = new bootstrap.Toast($('#liveToast'));
+        $('.toast-body').text(message);
+        toast.show();
+    }
 
 $(document).ready(() => {
     $("#navbar-container").load("navbar.html", function() {
@@ -64,9 +86,9 @@ $(document).ready(() => {
     // Initialize joystick
     new JoystickController();
 
-    // Lamp switch control
+
     $('#lamp-switch').change(function() {
-        const state = this.checked;
+        const state = this.checked ? 1 : 0;
         $.ajax({
             type: 'POST',
             url: '/api/v1/lamp',
@@ -76,11 +98,4 @@ $(document).ready(() => {
             error: () => showToast('Control failed')
         });
     });
-
-    // Toast notification
-    function showToast(message) {
-        const toast = new bootstrap.Toast($('#liveToast'));
-        $('.toast-body').text(message);
-        toast.show();
-    }
 });

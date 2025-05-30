@@ -20,7 +20,7 @@ $(document).ready(() => {
         };
 
         $.ajax({
-            url: '/api/apn',
+            url: '/api/v1/lte',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
@@ -35,23 +35,30 @@ $(document).ready(() => {
         if (!e.target.files.length) return;
         
         const formData = new FormData();
-        formData.append('pdp_file', e.target.files[0]);
+        formData.append('file', e.target.files[0]);
+        console.log('Added file:', formData.get('file')); 
 
         $.ajax({
-            url: '/api/v1/pdp/import',
+            url: '/api/v1/pdp',
             method: 'POST',
             data: formData,
             processData: false,
             contentType: false,
-            success: () => showToast('PDP configuration imported successfully', 'success'),
-            error: () => showToast('Import failed', 'danger')
+            success: () => {
+                showToast('PDP configuration imported successfully', 'success');
+                $('#pdp-file').val('');
+            },
+            error: () => {
+                showToast('Import failed', 'danger');
+                $('#pdp-file').val('');
+            }
         });
     });
 
     $('#pdp-export').click(() => {
         showToast('Generating configuration file...', 'info');
         
-        $.get('/api/v1/pdp/export')
+        $.get('/api/v1/pdp')
         .done(data => {
             const blob = new Blob([data], {type: 'text/csv'});
             const url = URL.createObjectURL(blob);
