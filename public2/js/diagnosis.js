@@ -2,6 +2,29 @@ $(document).ready(() => {
     $("#navbar-container").load("navbar.html", function() {
         new bootstrap.Offcanvas(document.getElementById('sidebar'))
     });
+    $('#connect-server').click(function() {
+        const portStr = $('#server-port').val();
+        if (!portStr || isNaN(portStr) || parseInt(portStr, 10) < 1 || parseInt(portStr, 10) > 65535) {
+            showToast('please enter a valid port number');
+            return;
+        }
+
+        const port = parseInt(portStr, 10);
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/diagnosis/connect',
+            contentType: 'application/json',
+            data: JSON.stringify({ port: port }),
+            success: function(response) {
+                
+                showToast('connect success: ' + response);
+            },
+            error: function(xhr) {
+                showToast('connect failed: ' + xhr.responseText);
+            }
+        });
+    });
+
     $('#export-diagnosis').click(function() {
         showToast('Diagnosis data exporting...');
         $.ajax({

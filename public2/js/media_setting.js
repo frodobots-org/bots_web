@@ -6,7 +6,6 @@ $(document).ready(() => {
     initMediaSettings();
 
 
-    // 修改：将e.target.value转换为整数后再传递给updateVolume
     $('#mic-slider').on('input', function(e) {
         $('#mic-value').text(`${e.target.value}%`);
     }).on('change', function(e) {
@@ -31,7 +30,7 @@ $(document).ready(() => {
                 '1024x576 (SD)': 3 
             },
             'rear-camera': { 
-                '854x480 (WVGA)': 1, 
+                '960x540 (WVGA)': 1, 
                 '640x360 (nHD)': 2, 
                 '480x270 (qHD)': 3 
             },
@@ -55,7 +54,7 @@ $(document).ready(() => {
     function initMediaSettings() {
         const reverseResolutionMap = {
             'front-camera': { 1: '1920x1080 (Full HD)', 2: '1280x720 (HD)', 3: '1024x576 (SD)' },
-            'rear-camera': { 1: '854x480 (WVGA)', 2: '640x360 (nHD)', 3: '480x270 (qHD)' },
+            'rear-camera': { 1: '960x540 (WVGA)', 2: '640x360 (nHD)', 3: '480x270 (qHD)' },
             'usb-camera': { 1: '1280x720 (HD)', 2: '640x480 (VGA)' }
         };
 

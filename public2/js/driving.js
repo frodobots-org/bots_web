@@ -4,6 +4,8 @@ class JoystickController {
         this.handle = $('.joystick-handle')[0];
         this.radius = this.container.offsetWidth / 2;
         this.isDragging = false;
+        this.currentData = { x: 0, y: 0 };
+        this.timer = null;
 
         // Touch events
         this.container.addEventListener('touchstart', this.start.bind(this), { passive: false });
@@ -27,6 +29,8 @@ class JoystickController {
     start(event) {
         this.isDragging = true;
         this.move(event);
+        this.timer = setInterval(() => this.sendData(), 100);
+        this.sendData();
     }
 
     move(event) {
@@ -41,16 +45,18 @@ class JoystickController {
         
         this.handle.style.transform = `translate(${x}px, ${y}px)`;
         
-        const data = {
+        this.currentData = {
             x: parseFloat((x / this.radius).toFixed(2)),
             y: parseFloat((y / this.radius).toFixed(2))
         };
-        console.log(data);
+    }
+
+    sendData() {
         $.ajax({
             type: 'POST',
             url: '/api/v1/control',
             contentType: 'application/json',
-            data: JSON.stringify(data),
+            data: JSON.stringify(this.currentData),
             success: () => showToast('Control command sent'),
             error: () => showToast('Failed to send control command')
         });
@@ -59,15 +65,9 @@ class JoystickController {
     end() {
         this.isDragging = false;
         this.handle.style.transform = 'translate(-50%, -50%)';
-        // Reset position using AJAX with JSON format
-        $.ajax({
-            type: 'POST',
-            url: '/api/v1/control',
-            contentType: 'application/json',
-            data: JSON.stringify({ x: 0, y: 0 }),
-            success: () => showToast('Control reset successful'),
-            error: () => showToast('Control reset failed')
-        });
+        clearInterval(this.timer);
+        this.currentData = { x: 0, y: 0 };
+        this.sendData();
     }
 }
 
